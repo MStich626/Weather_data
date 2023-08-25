@@ -106,17 +106,22 @@ while(True):
                         if T < 1  or T > 53:
                                 print("Podaj prawidłową wartość (1 - 53)")
                         else:
-                                print('a) Liczba danych w wektorze: ')
-                                liczba_wyswietlanych_danych = input()
-                                print('Wektor tygodniowy (dla ',T,' tygodnia w roku):\n')
-                                zmienna = obj.tydzien_wektor(tablica, T)
-                                i = 0
-                                for el in zmienna:
-                                        print(el[:int(liczba_wyswietlanych_danych)])
-                                        i+=1
-                                        if i > 167:
+                                print('a) Liczba danych w wektorze (1 - 8): ')
+                                while(True):
+                                        liczba_wyswietlanych_danych = int(input())
+                                        if liczba_wyswietlanych_danych < 1 or liczba_wyswietlanych_danych > 8:
+                                                print('Podaj prawidłową wartość (1 - 8)')
+                                        else:
+                                                print('Wektor tygodniowy (dla ',T,' tygodnia w roku):\n')
+                                                zmienna = obj.tydzien_wektor(tablica, T)
+                                                i = 0
+                                                for el in zmienna:
+                                                        print(el[:int(liczba_wyswietlanych_danych)])
+                                                        i+=1
+                                                        if i > 167:
+                                                                break
+                                                print('\n')
                                                 break
-                                print('\n')
                                 break
 
 
