@@ -59,9 +59,13 @@ class wykresy():
                 plt.show()  
         
 
+# Wybrany plik .txt
+sciezka = '.\\Data\\elblag.txt'
 
-sciezka = '.\\Data\\elblag.txt'       
+# Utworzenie obiektu
 obj = obliczenia()
+
+# Utworzenie tablicy z danych
 tablica = odczyt_danych(sciezka)
  
 
@@ -80,11 +84,11 @@ while(True):
         
         if decyzja == 1:         
                 print('1. Podaj typ danych:')
-                print(oznaczenia)
+                print(oznaczenia[4:])
                 dane = input()
                 kolumna = obj.do_column(dane, obj.miesiac_wektor(tablica,2))
                 np_dbt_col = np.array(kolumna)
-                print(np_dbt_col)
+                #print(np_dbt_col)
                 print('Dla ',dane,':')
                 print('* Odchylenie standardowe: ',np.std(np_dbt_col))
                 print('* Średnia arytmetyczna: ',np.mean(np_dbt_col))
@@ -95,19 +99,25 @@ while(True):
 
 
         elif decyzja == 2:               
-                print('2. Podaj numer tygodnia:')
-                T = int(input())
-                print('a) Liczba danych w wektorze: ')
-                liczba_wyswietlanych_danych = input()
-                print('Wektor tygodniowy (dla ',T,' tygodnia w roku):\n')
-                zmienna = obj.tydzien_wektor(tablica, T)
-                i = 0
-                for el in zmienna:
-                        print(el[:int(liczba_wyswietlanych_danych)])
-                        i+=1
-                        if i > 167:
+                print('2. Podaj numer tygodnia (1 - 53):')
+
+                while(True):
+                        T = int(input())
+                        if T < 1  or T > 53:
+                                print("Podaj prawidłową wartość (1 - 53)")
+                        else:
+                                print('a) Liczba danych w wektorze: ')
+                                liczba_wyswietlanych_danych = input()
+                                print('Wektor tygodniowy (dla ',T,' tygodnia w roku):\n')
+                                zmienna = obj.tydzien_wektor(tablica, T)
+                                i = 0
+                                for el in zmienna:
+                                        print(el[:int(liczba_wyswietlanych_danych)])
+                                        i+=1
+                                        if i > 167:
+                                                break
+                                print('\n')
                                 break
-                print('\n')
 
 
         elif decyzja == 3:
